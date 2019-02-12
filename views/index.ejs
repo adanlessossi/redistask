@@ -18,21 +18,21 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        
+
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                
+
                 </ul>
             </div>
         </nav>
-        
-        <div class="container">    
+        <!-- container --> 
+        <div class="container">
             <form method="POST" action="/task/add">
                 <label>Add Task</label>
                 <input type="text" name="task" placeholder="Add Task">
                 <input type="submit" value="Submit">
             </form>
-    
+
             <%= title %>
 
             <form method="POST" action="/task/delete">
@@ -53,7 +53,7 @@
                 Company: <%= call.company %><br>
                 Phone: <%= call.phone %><br>
                 Time: <%= call.time %>
-            
+
 
                 <h3>Edit Next Call</h3>
                 <form method="POST" action="/call/add">
@@ -72,6 +72,6 @@
                     <input type="submit" value="Submit">
                 </form>
             </div>
-        </div><!-- /.container -->        
+        </div><!-- /.container -->
     </body>
 </html>

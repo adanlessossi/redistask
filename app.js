@@ -13,14 +13,17 @@ redisClient.on('connect', () => {
     console.log('Redis Server connected...');
 })
 
+// Set the view folder and the template engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Middleware settings
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
 
+// Basic route
 app.get('/', (req, res) => {
     var title = 'Task List';
     redisClient.lrange('tasks', 0, -1, (err, reply) => {
@@ -30,10 +33,10 @@ app.get('/', (req, res) => {
                 tasks: reply,
                 call: call
             });
-        });        
+        });
     });
 });
-
+// Add Task Route
 app.post('/task/add', (req, res) => {
     var task = req.body.task;
 
@@ -45,7 +48,7 @@ app.post('/task/add', (req, res) => {
         res.redirect('/');
     });
 });
-
+// Delete Task Route
 app.post('/task/delete', (req, res) => {
     var tasksToDel = req.body.tasks;
 
@@ -56,13 +59,13 @@ app.post('/task/delete', (req, res) => {
                     if(err){
                         console.log(err);
                     }
-                });                
+                });
             }
         }
         res.redirect('/');
     });
 });
-
+// Add call route
 app.post('/call/add', (req, res) => {
     var newCall = {};
 
@@ -85,7 +88,7 @@ app.post('/call/add', (req, res) => {
         }
     );
 });
-
+// Listen to port 3000
 app.listen(3000);
 console.log('Server started at 3000');
 
